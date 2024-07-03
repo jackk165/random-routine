@@ -6,15 +6,46 @@
     <title>Morning Happiness Routine</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FFDDC1, #FFE7E1);
+            color: #444;
             text-align: center;
-            margin-top: 50px;
+            padding: 50px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #FF6F61;
+            margin-bottom: 20px;
         }
         .routine {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
             margin-top: 20px;
         }
+        .routine p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .routine strong {
+            color: #FF6F61;
+        }
         button {
+            background: #FF6F61;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
             margin-top: 20px;
+        }
+        button:hover {
+            background: #FF4B47;
         }
     </style>
 </head>
@@ -24,8 +55,8 @@
         <p><strong>Body:</strong> <span id="body-activity"></span></p>
         <p><strong>Mind:</strong> <span id="mind-activity"></span></p>
         <p><strong>Emotion:</strong> <span id="emotion-activity"></span></p>
+        <button onclick="generateRoutine()">Generate Routine</button>
     </div>
-    <button onclick="generateRoutine()">Generate Routine</button>
 
     <script>
         const bodyActivities = ['Walk', 'Yoga'];
