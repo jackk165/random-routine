@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Your Routines</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #FFDDC1, #FFE7E1);
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF6F61;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .input-form {
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .input-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        button {
+            background-color: #FF6F61;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #FF4B47;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #FF6F61;
+            padding: 10px 20px;
+            border: 1px solid #FF6F61;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        a:hover {
+            background-color: #FF6F61;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Your Routines</h1>
+
+        <div class="input-form">
+            <label for="body-activities">Body Activities (comma separated):</label>
+            <textarea id="body-activities" rows="2"></textarea>
+            
+            <label for="mind-activities">Mind Activities (comma separated):</label>
+            <textarea id="mind-activities" rows="3"></textarea>
+            
+            <label for="emotion-activities">Emotion Activities (comma separated):</label>
+            <textarea id="emotion-activities" rows="2"></textarea>
+            
+            <button onclick="saveActivities()">Save Activities</button>
+        </div>
+
+        <a href="index.html">Back to Routine Generator</a>
+
+        <script>
+            function saveActivities() {
+                const username = localStorage.getItem('username');
+                if (username) {
+                    const bodyActivities = document.getElementById('body-activities').value;
+                    const mindActivities = document.getElementById('mind-activities').value;
+                    const emotionActivities = document.getElementById('emotion-activities').value;
+
+                    localStorage.setItem(username + '_bodyActivities', bodyActivities);
+                    localStorage.setItem(username + '_mindActivities', mindActivities);
+                    localStorage.setItem(username + '_emotionActivities', emotionActivities);
+                }
+            }
+
+            function loadActivities() {
+                const username = localStorage.getItem('username');
+                if (username) {
+                    const bodyActivities = localStorage.getItem(username + '_bodyActivities') || 'Walk, Yoga';
+                    const mindActivities = localStorage.getItem(username + '_mindActivities') || '3 to Thrive, Silva Method, Mantra Meditation, Left Hand Teeth';
+                    const emotionActivities = localStorage.getItem(username + '_emotionActivities') || 'Wim Breathing, Mindfulness Meditation, Love You Mirror';
+                    
+                    document.getElementById('body-activities').value = bodyActivities;
+                    document.getElementById('mind-activities').value = mindActivities;
+                    document.getElementById('emotion-activities').value = emotionActivities;
+                } else {
+                    window.location.href = "login.html"; // Redirect to login if not logged in
+                }
+            }
+
+            window.onload = loadActivities;
+        </script>
+    </div>
+</body>
+</html>
