@@ -95,6 +95,27 @@
     </div>
 
     <script>
+        // Function to populate settings form with stored activities
+        function populateSettingsForm() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                const bodyActivities = localStorage.getItem(username + '_bodyActivities');
+                const mindActivities = localStorage.getItem(username + '_mindActivities');
+                const emotionActivities = localStorage.getItem(username + '_emotionActivities');
+
+                if (bodyActivities) {
+                    document.getElementById('body-activities').value = bodyActivities;
+                }
+                if (mindActivities) {
+                    document.getElementById('mind-activities').value = mindActivities;
+                }
+                if (emotionActivities) {
+                    document.getElementById('emotion-activities').value = emotionActivities;
+                }
+            }
+        }
+
+        // Function to save activities to localStorage
         function saveActivities() {
             const username = localStorage.getItem('username');
             if (username) {
@@ -111,6 +132,10 @@
                 alert('Please login first to save activities.');
             }
         }
+
+        // Populate form when page loads
+        window.onload = populateSettingsForm;
     </script>
+
 </body>
 </html>
